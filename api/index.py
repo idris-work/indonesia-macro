@@ -28,7 +28,7 @@ def db():
     )
 
 
-@app.get("/snapshot")
+@app.get("/api/snapshot")
 def get_snapshot():
     """Single endpoint — returns all latest values for the dashboard."""
     client = db()
@@ -68,7 +68,7 @@ def get_snapshot():
     }
 
 
-@app.get("/history/{table}")
+@app.get("/api/history/{table}")
 def get_history(table: str, days: int = 90):
     allowed = {
         "fx_rates", "jci", "commodity_prices",
@@ -90,6 +90,6 @@ def get_history(table: str, days: int = 90):
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@app.get("/health")
+@app.get("/api/health")
 def health():
     return {"status": "ok"}
