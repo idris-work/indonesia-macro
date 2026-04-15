@@ -701,7 +701,7 @@ const API_BASE = "https://indonesia-macro.vercel.app";
 
 async function loadLiveData() {
   try {
-    const res = await fetch(`${API_BASE}/snapshot`);
+    const res = await fetch(`${API_BASE}/api/snapshot`);
     if (!res.ok) return; // Silently fail — keep mock data
     const data = await res.json();
 
