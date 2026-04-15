@@ -5,6 +5,7 @@ This file replaces api/main.py for Vercel deployment.
 """
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from mangum import Mangum
 import os
 from supabase import create_client
 
@@ -16,6 +17,9 @@ app.add_middleware(
     allow_methods=["GET"],
     allow_headers=["*"],
 )
+
+handler = Mangum(app)
+
 
 def db():
     return create_client(
